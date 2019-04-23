@@ -1,0 +1,47 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using RideServiceGroup3.Entities
+@model RideServiceGroup3.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="wrapper">
+    <div class="row">
+        <div>
+            <p>Kategori:</p>
+            <select>
+                <option value="all">Alle</option>
+                <option value="action">Action</option>
+            </select>
+        </div>
+        
+        <div>
+            <p>Status:</p>
+            <select>
+                <option value="all">Alle</option>
+                <option value="broken">Viker ikke</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="rides"> 
+        @{
+            foreach (Ride ride in Model.Rides)
+            {
+
+                <div class="ride">
+                    <a href="#">
+                        <h2>@ride.Name</h2>
+                        <img src="@ride.Url" />
+                        <p>@ride.GetShortDescription()</p>
+                        <p>@ride.TranslateStatus()</p>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+
