@@ -9,17 +9,16 @@ using RideServiceGroup3.Entities;
 
 namespace RideServiceGroup3.Web.Pages
 {
-    public class IndexModel : PageModel
+    public class RideModel : PageModel
     {
-        
-        public List<Ride> Rides { get; set; }
 
-        public void OnGet()
+        public Ride Ride { get; set; }
+
+        public void OnGet(int id)
         {
             RideRepository rideRepo = new RideRepository();
 
-            Rides = rideRepo.GetAllRides();
-
+            Ride = rideRepo.GetRide(id);
         }
     }
 }

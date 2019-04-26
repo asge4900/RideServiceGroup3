@@ -1,0 +1,20 @@
+﻿@page "{id}"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using RideServiceGroup3.Entities
+@model RideServiceGroup3.Web.Pages.RideModel
+@{
+    ViewData["Title"] = "Ride";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper">
+    <div class="ride">
+        <h2>@Model.Ride.Name</h2>
+        <img src="@Model.Ride.Url" />
+        <p>@Model.Ride.Description</p>
+        <p>@Model.Ride.TranslateStatus()</p>
+        <p>Antal nedbrud: @Model.Ride.NumberOfShutdowns</p>
+        <p>Antal dage siden seneste nedbrud: @Model.Ride.DaysSinceLastShutdown()</p>
+    </div>
+</div>
+

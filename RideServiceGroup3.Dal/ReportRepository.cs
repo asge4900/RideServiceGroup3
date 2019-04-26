@@ -33,5 +33,45 @@ namespace RideServiceGroup3.Dal
             }
             return reports;
         }
+
+        internal int NumberOfShutdowns(Ride ride)
+        {
+            
+
+            string sql = $"SELECT count (status) as NumberOfShutdowns FROM dbo.Rides r JOIN dbo.Report r2 ON r.RideId = r2.RideId WHERE r.Rideid = '{ride.Id}' And r2.Status = 2";
+
+            DataTable reportsTable = ExecuteQuery(sql);
+
+            if (reportsTable.Rows.Count > 0)
+            {
+                DataRow row = reportsTable.Rows[0];
+
+                int shutdowns = (int)row["NumberOfShutdowns"];
+
+
+                return shutdowns; 
+            }
+            return 0;
+
+            
+        }
+
+        internal DateTime LastShutdown(Ride ride)
+        {
+           
+            string sql = $"SELECT top (1) r2.ReportTime FROM dbo.Rides r JOIN dbo.Report r2 ON r.RideId = r2.RideId WHERE r.Rideid = {ride.Id} And r2.Status = 2 ORDER BY r2.ReportTime DESC";
+
+            DataTable reportsTable = ExecuteQuery(sql);
+
+            if (reportsTable.Rows.Count > 0)
+            {
+                DataRow row = reportsTable.Rows[0];
+
+                DateTime date = (DateTime)row["ReportTime"];
+
+                return date;
+            }
+            return DateTime.Now;
+        }
     }
 }

@@ -7,6 +7,21 @@ namespace RideServiceGroup3.Entities
 {
     public class Ride
     {
+        public Ride()
+        {
+
+        }
+
+        public Ride(int id, string name, string description, string url, RideCategory category, List<Report> reports)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Url = url;
+            Category = category;
+            Reports = reports;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -26,17 +41,29 @@ namespace RideServiceGroup3.Entities
             }
         }
         public List<Report> Reports { get; set; }
+        public int NumberOfShutdowns { get; set; }
+        public DateTime LastShutdown { get; set; }
 
 
-        //public int NumberOfShutdowns()
-        //{
+        public int NumberOfShutdownsMethodForm()
+        {
+            int shutdowns = 0;
+            foreach (Report report in Reports)
+            {
+                if(report.Status == Status.Broken)
+                {
+                    shutdowns++;
+                }
+            }
+            return shutdowns;
+        }
 
-        //}
-
-        //public int DaysSinceLastShutdown()
-        //{
-
-        //}
+        public int DaysSinceLastShutdown()
+        {
+            
+            System.TimeSpan diff = DateTime.Now.Subtract(LastShutdown);
+            return diff.Days;
+        }
 
         public string GetShortDescription()
         {

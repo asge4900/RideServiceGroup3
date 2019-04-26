@@ -6,6 +6,11 @@ namespace RideServiceGroup3.Entities
 {
     public class RideCategory
     {
+        public RideCategory()
+        {
+
+        }
+
         public RideCategory(int id, string name, string description)
         {
             Id = id;

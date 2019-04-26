@@ -9,7 +9,7 @@
 
 
 <div class="wrapper">
-    <div class="row">
+    @*<div class="row">
         <div>
             <p>Kategori:</p>
             <select>
@@ -25,7 +25,7 @@
                 <option value="broken">Viker ikke</option>
             </select>
         </div>
-    </div>
+    </div>*@
 
     <div class="rides"> 
         @{
@@ -33,7 +33,7 @@
             {
 
                 <div class="ride">
-                    <a href="#">
+                    <a href="Ride/@ride.Id">
                         <h2>@ride.Name</h2>
                         <img src="@ride.Url" />
                         <p>@ride.GetShortDescription()</p>
