@@ -9,23 +9,35 @@
 
 
 <div class="wrapper">
-    @*<div class="row">
+   
+    <form class="row" action="/" method="post">
+        @Html.AntiForgeryToken()
         <div>
             <p>Kategori:</p>
-            <select>
+            <select asp-for="Category">
                 <option value="all">Alle</option>
-                <option value="action">Action</option>
+                @foreach (RideCategory rideCategory in Model.RideCategories)
+                {
+                    <option value="@rideCategory.Name">@rideCategory.Name</option>
+                }
             </select>
         </div>
-        
+
         <div>
             <p>Status:</p>
-            <select>
-                <option value="all">Alle</option>
-                <option value="broken">Viker ikke</option>
+            <select asp-for="Status">
+                <option value="0">Alle</option>
+                <option value="1">Virker</option>
+                <option value="2">Ude af drift</option>
+                <option value="3">Repareres</option>
             </select>
         </div>
-    </div>*@
+        <div>
+            <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Søg" />
+        </div>
+    </form>     
+   
 
     <div class="rides"> 
         @{

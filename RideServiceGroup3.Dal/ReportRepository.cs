@@ -48,7 +48,6 @@ namespace RideServiceGroup3.Dal
 
                 int shutdowns = (int)row["NumberOfShutdowns"];
 
-
                 return shutdowns; 
             }
             return 0;

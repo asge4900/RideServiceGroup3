@@ -40,7 +40,7 @@ namespace RideServiceGroup3.Entities
                 return sortedReports[0].Status;
             }
         }
-        public List<Report> Reports { get; set; }
+        public List<Report> Reports { get; set; } = new List<Report>();
         public int NumberOfShutdowns { get; set; }
         public DateTime LastShutdown { get; set; }
 
@@ -59,14 +59,13 @@ namespace RideServiceGroup3.Entities
         }
 
         public int DaysSinceLastShutdown()
-        {
-            
+        {            
             System.TimeSpan diff = DateTime.Now.Subtract(LastShutdown);
             return diff.Days;
         }
 
         public string GetShortDescription()
-        {
+        { 
             string sub = Description.Substring(0, 50);
             return $"{sub}...";
         }

@@ -12,6 +12,28 @@ namespace RideServiceGroup3.Dal
         {
         }
 
+        public List<RideCategory> GetAllCategory()
+        {
+            List<RideCategory> rideCategories = new List<RideCategory>();
+
+            string sql = "SELECT * FROM dbo.RideCategories rc";
+
+            DataTable categoryTable = ExecuteQuery(sql);
+
+            foreach (DataRow row in categoryTable.Rows)
+            {
+                int id = (int)row["RideCategoryId"];
+                string name = (string)row["Name"];                
+                string description = (string)row["Description"];
+
+                RideCategory rideCategory = new RideCategory(id, name, description);
+
+                rideCategories.Add(rideCategory);
+            }
+            
+            return rideCategories;
+        }
+
         internal RideCategory GetCategoryFor(Ride ride)
         {
             string sql = $"SELECT rc.* FROM dbo.RideCategories rc JOIN dbo.Rides r ON r.CategoryId = rc.RideCategoryId WHERE r.RideId = '{ride.Id}'";

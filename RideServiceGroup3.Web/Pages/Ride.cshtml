@@ -11,6 +11,7 @@
     <div class="ride">
         <h2>@Model.Ride.Name</h2>
         <img src="@Model.Ride.Url" />
+        <p>@Model.Ride.Category.Name</p>
         <p>@Model.Ride.Description</p>
         <p>@Model.Ride.TranslateStatus()</p>
         <p>Antal nedbrud: @Model.Ride.NumberOfShutdowns</p>
